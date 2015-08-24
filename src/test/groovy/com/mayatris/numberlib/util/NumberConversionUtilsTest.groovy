@@ -12,18 +12,18 @@ class NumberConversionUtilsTest extends Specification {
         int number = - 100;
 
         when:
-        NumberConversionUtils.numberBelow20ToString(number)
+        NumberConversionUtils.numberBelow100ToString(number)
 
         then:
         thrown(IllegalArgumentException)
     }
 
-    def "Convert numbers below 20 to string"() {
+    def "Convert numbers below 100 to string"() {
         given: "a non negative number below 20"
         def number = numericRepresentation
 
         expect: "a correct String representation of that number"
-        stringRepresentation == NumberConversionUtils.numberBelow20ToString(numericRepresentation)
+        stringRepresentation == NumberConversionUtils.numberBelow100ToString(number)
 
         where: "with test cases"
         numericRepresentation | stringRepresentation
@@ -47,6 +47,11 @@ class NumberConversionUtilsTest extends Specification {
         17 | "seventeen"
         18 | "eighteen"
         19 | "nineteen"
+        20 | "twenty"
+        35 | "thirty five"
+        76 | "seventy six"
+        99 | "ninety nine"
+
     }
 
 }
