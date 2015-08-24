@@ -1,5 +1,6 @@
 package com.mayatris.numberlib.util
 
+import com.mayatris.numberlib.domain.Triple
 import spock.lang.Specification
 
 /**
@@ -7,68 +8,25 @@ import spock.lang.Specification
  */
 class NumberConversionUtilsTest extends Specification {
 
-    def "convertion of a negative number throws an exception" (){
-        given: "a negative number"
-        int number = - 100;
-
-        when:
-        NumberConversionUtils.numberBelow100ToString(number)
-
-        then:
-        thrown(IllegalArgumentException)
-    }
-
-    def "Convert numbers below 100 to string"() {
-        given: "a non negative number below 100"
-        def number = numericRepresentation
-
-        expect: "a correct String representation of that number"
-        stringRepresentation == NumberConversionUtils.numberBelow100ToString(number)
-
-        where: "with test cases"
-        numericRepresentation | stringRepresentation
-        0 | "zero"
-        1 | "one"
-        2 | "two"
-        3 | "three"
-        4 | "four"
-        5 | "five"
-        6 | "six"
-        7 | "seven"
-        8 | "eight"
-        9 | "nine"
-        10 | "ten"
-        11 | "eleven"
-        12 | "twelve"
-        13 | "thirteen"
-        14 | "fourteen"
-        15 | "fifteen"
-        16 | "sixteen"
-        17 | "seventeen"
-        18 | "eighteen"
-        19 | "nineteen"
-        20 | "twenty"
-        35 | "thirty five"
-        76 | "seventy six"
-        99 | "ninety nine"
-    }
-
-
     def "split large numbers to triples (each below 1000)"() {
         given: "a number between 0 and 999,999,999"
         int number = numericRepresentation
 
         when: "the number is split into triples"
-        int[] triples = NumberConversionUtils.splitIntoTriples(number)
+        List<Triple> triples = NumberConversionUtils.splitIntoTriples(number)
+        def intList = tripleListToIntList(triples)
 
         then: "the correct number of triples"
-        triples == expectedTriples
+        intList == expectedTriples
 
         where:
         numericRepresentation | expectedTriples
         100000000  | [100,0,0]
         999 | [999]
         100000321 | [100,0,321]
+    }
 
+    private def tripleListToIntList(List<Triple> triples) {
+        return triples.collect {x -> x.getValue()}
     }
 }
