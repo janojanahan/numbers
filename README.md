@@ -1,2 +1,2 @@
 # numbers
-Conversionof numbers to words (British)
+Conversion of numbers to words (British)
