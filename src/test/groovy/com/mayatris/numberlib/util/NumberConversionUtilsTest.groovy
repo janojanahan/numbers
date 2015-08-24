@@ -19,7 +19,7 @@ class NumberConversionUtilsTest extends Specification {
     }
 
     def "Convert numbers below 100 to string"() {
-        given: "a non negative number below 20"
+        given: "a non negative number below 100"
         def number = numericRepresentation
 
         expect: "a correct String representation of that number"
@@ -51,7 +51,6 @@ class NumberConversionUtilsTest extends Specification {
         35 | "thirty five"
         76 | "seventy six"
         99 | "ninety nine"
-
     }
 
 }
