@@ -53,4 +53,22 @@ class NumberConversionUtilsTest extends Specification {
         99 | "ninety nine"
     }
 
+
+    def "split large numbers to triples (each below 1000)"() {
+        given: "a number between 0 and 999,999,999"
+        int number = numericRepresentation
+
+        when: "the number is split into triples"
+        int[] triples = NumberConversionUtils.splitIntoTriples(number)
+
+        then: "the correct number of triples"
+        triples == expectedTriples
+
+        where:
+        numericRepresentation | expectedTriples
+        100000000  | [100,0,0]
+        999 | [999]
+        100000321 | [100,0,321]
+
+    }
 }

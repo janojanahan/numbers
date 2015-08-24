@@ -2,6 +2,10 @@ package com.mayatris.numberlib.util;
 
 import com.google.common.base.Preconditions;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 /**
  * Created by jano on 24/08/2015.
  */
@@ -26,5 +30,16 @@ public class NumberConversionUtils {
             representation.append(' ').append(NUMBERS_BELOW_20[leastSignificantDigit]);
         }
         return representation.toString();
+    }
+
+    public static Integer[] splitIntoTriples(int number) {
+        List<Integer> listOfTriples= new ArrayList<>();
+        while(number > 0) {
+            int triple = number % 1000;
+            listOfTriples.add(triple);
+            number /= 1000;
+        }
+        Collections.reverse(listOfTriples);
+        return listOfTriples.toArray(new Integer[listOfTriples.size()]);
     }
 }
