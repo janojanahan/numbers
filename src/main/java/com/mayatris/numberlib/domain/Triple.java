@@ -8,7 +8,7 @@ public class Triple {
             "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen",
             "nineteen"};
     private static final String[] POWER_OF_TENS = {
-            "twenty", "thirty", "fourty", "fifty", "sixty", "seventy", "eighty", "ninety"
+            "twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety"
     };
 
     final int value;

@@ -5,13 +5,13 @@ import spock.lang.Specification
 class TripleTest extends Specification {
 
     def "creating a triple outside the range of [0..999] should throw an exception"() {
-        when: "trying to initialise a tripe with a number below 0"
+        when: "trying to initialise a triple with a number below 0"
         new Triple(-10)
 
         then: "an IllegalArgumentException to be thrown"
         thrown(IllegalArgumentException)
 
-        when: "trying to initialise a tripe with a number above 999"
+        when: "trying to initialise a triple with a number above 999"
         new Triple(1000)
 
         then: "an IllegalArgumentException to be thrown"
