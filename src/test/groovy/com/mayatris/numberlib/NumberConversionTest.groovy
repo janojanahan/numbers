@@ -1,16 +1,15 @@
-package com.mayatris.numberlib.util
+package com.mayatris.numberlib
 
-import com.mayatris.numberlib.domain.Triple
 import spock.lang.Specification
 
-class NumberConversionUtilsTest extends Specification {
+class NumberConversionTest extends Specification {
 
     def "split large numbers to triples (each below 1000)"() {
         given: "a number between 0 and 999,999,999"
         int number = numericRepresentation
 
         when: "the number is split into triples"
-        List<Triple> triples = NumberConversionUtils.splitIntoTriples(number)
+        List<Triple> triples = NumberConversion.splitIntoTriples(number)
         def intList = tripleListToIntList(triples)
 
         then: "the correct number of triples"
@@ -18,14 +17,14 @@ class NumberConversionUtilsTest extends Specification {
 
         where:
         numericRepresentation | expectedTriples
-        100000000  | [100,0,0]
-        999 | [999]
-        100000321 | [100,0,321]
+        100000000             | [100, 0, 0]
+        999                   | [999]
+        100000321             | [100, 0, 321]
     }
 
     def "Convert number to words"() {
         expect: "numbers to be converted to words"
-        stringRepresentation == NumberConversionUtils.convertIntToWords(intRepresentation)
+        stringRepresentation == NumberConversion.convertIntToWords(intRepresentation)
 
         where: "it appears in the following test cases"
         intRepresentation | stringRepresentation
@@ -43,19 +42,19 @@ class NumberConversionUtilsTest extends Specification {
 
     def "attempting to convert a number not in the range 0..999,999,999 will throw an exception"() {
         when: "trying to convert a number below 0"
-        NumberConversionUtils.convertIntToWords(-1)
+        NumberConversion.convertIntToWords(-1)
 
         then: "an IllegalArgumentException to be thrown"
         thrown(IllegalArgumentException)
 
         when: "trying to convert a number above 999,999,999"
-        NumberConversionUtils.convertIntToWords(1000000000)
+        NumberConversion.convertIntToWords(1000000000)
 
         then: "an IllegalArgumentException to be thrown"
         thrown(IllegalArgumentException)
     }
 
-    private def tripleListToIntList(List<Triple> triples) {
-        return triples.collect {x -> x.getValue()}
+    private static def tripleListToIntList(List<Triple> triples) {
+        return triples.collect { x -> x.getValue() }
     }
 }

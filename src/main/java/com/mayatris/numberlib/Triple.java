@@ -1,8 +1,8 @@
-package com.mayatris.numberlib.domain;
+package com.mayatris.numberlib;
 
 import com.google.common.base.Preconditions;
 
-public class Triple {
+class Triple {
     private static final String[] NUMBERS_BELOW_20 = {
             "zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten",
             "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen",

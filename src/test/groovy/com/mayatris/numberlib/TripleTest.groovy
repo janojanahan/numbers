@@ -1,4 +1,4 @@
-package com.mayatris.numberlib.domain
+package com.mayatris.numberlib
 
 import spock.lang.Specification
 
